@@ -104,7 +104,6 @@ alias tmux='tmux -u'
 alias gs='git status'
 alias glog='git log --graph --decorate --oneline'
 
-export PATH="$PATH:/opt/nvim-linux64/bin"
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -129,11 +128,8 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-export PATH=~/.npm-global/bin:$PATH
-export PATH=$PATH:~/pbrt-v4/build
 eval "$(zoxide init bash)"
 export PATH="${PATH}:${HOME}/.local/bin/"
-export PATH="${PATH}:${HOME}/.config/polybar/pulseaudio/"
 
 eval "$(fzf --bash)"
 
@@ -194,3 +190,4 @@ function yy() {
 }
 
 export EDITOR=nvim
+. "$HOME/.cargo/env"

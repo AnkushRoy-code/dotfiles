@@ -38,6 +38,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     [blocks.segments.properties]
       commit_icon = '@'
       fetch_status = true
+      tag_icon = ' '
 
  [[blocks]]
     type = 'rprompt'
