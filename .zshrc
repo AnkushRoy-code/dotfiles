@@ -29,6 +29,9 @@ alias cd='z'
 alias zz='z -'
 alias tmux='tmux -u'
 alias gs='git status'
+alias gd='git diff'
+alias make='make && notify-send "Command Completed" "The programme is completed building "'
+alias sound='canberra-gtk-play -i audio-volume-change'
 
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
@@ -94,16 +97,6 @@ export EDITOR=nvim
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls; }
 
-function glog() {
+function gl() {
     git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' "$@"
-}
-
-function sshot ()
-{
-    ffmpeg -f x11grab -video_size 1366x768 -i :0.0 -vframes 1 ~/Pictures/Screenshot/screenshot_$(date +'%Y%m%d_%H%M%S').png -hide_banner -loglevel warning
-}
-
-function video ()
-{
-    ffmpeg -f x11grab -video_size 1366x768 -framerate 30 -i $DISPLAY -c:v ffvhuff ~/Videos/Screencast/screencast_$(date +'%Y%m%d_%H%M%S').mkv -hide_banner 
 }

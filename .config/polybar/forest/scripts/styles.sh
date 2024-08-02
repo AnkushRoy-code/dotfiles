@@ -16,12 +16,12 @@ change_color() {
 	/* colors */
 
 	* {
-	  al:   #00000000;
-	  bg:   ${BG}FF;
-	  bga:  ${BGA}FF;
-	  fg:   ${FG}FF;
-	  ac:   ${AC}FF;
-	  se:   ${SE}FF;
+	  al:   #000000;
+	  bg:   ${BG};
+	  bga:  ${BGA};
+	  fg:   ${FG};
+	  ac:   ${AC};
+	  se:   ${SE};
 	}
 	EOF
 	
@@ -45,12 +45,12 @@ elif  [[ $1 = "--nord" ]]; then
 	SE="#88C0D0"
 	change_color
 elif  [[ $1 = "--catppuccin" ]]; then
-	BG="#24273A"
+	BG="#1E1E2E"
 	FG="#CDD6F4"
 	BGA="#6C7086"
-	SEP="#7F849C"
-	AC="#FAB387"
-	SE="#F5E0DC"
+	SEP="#A6ADC8"
+	AC="#F38BA8"
+	SE="#F9E2AF"
 	change_color
 elif  [[ $1 = "--gruvbox" ]]; then
 	BG="#282828"

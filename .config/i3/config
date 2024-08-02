@@ -49,7 +49,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -65,7 +65,7 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
-bindsym $mod+l focus right
+# bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -204,6 +204,7 @@ exec --no-startup-id picom -b
 exec --no-startup-id feh --bg-fill /home/ankush/Pictures/wallpapers/arch-black-4k.png
 # exec --no-startup-id settimed lakeside
 exec --no-startup-id bash /home/ankush/.config/polybar/launch.sh --forest
+exec --no-startup-id wired
 
 # Screenshot ***********************************************************
 bindsym Print exec --no-startup-id scrot "/home/ankush/Pictures/Screenshot/$(date +'%Y-%m-%d_%H-%M-%S').png"
@@ -216,18 +217,32 @@ bindsym $mod+d exec --no-startup-id rofi -no-config -no-lazy-grab -show drun -mo
 bindsym $mod+u exec --no-startup-id rofi -show window -no-config -no-lazy-grab -show window -modi drun -theme ~/.config/rofi/config.rasi
 bindsym $mod+Shift+d exec --no-startup-id bash ~/.config/polybar/forest/scripts/powermenu.sh
 
-# start konsole ********************************************************
-bindsym $mod+Enter exec --no-startup-id konsole
+# start Terminal ********************************************************
+bindsym $mod+Enter exec --no-startup-id st
 
 # keybind to lock the screen  ******************************************
 bindsym $mod+Shift+i exec --no-startup-id i3lock
 
 # change brightness ****************************************************
-bindsym $mod+Prior exec --no-startup-id brightnessctl set +5%
-bindsym $mod+Next exec --no-startup-id brightnessctl set 5%-
+bindsym $mod+Prior exec --no-startup-id bash ~/.local/bin/backlight up
+bindsym $mod+Next exec --no-startup-id bash ~/.local/bin/backlight down
+
+# notification controls
+bindsym $mod+n exec --no-startup-id wired --drop all
+bindsym $mod+i exec --no-startup-id wired --drop latest
+bindsym $mod+l exec --no-startup-id wired --show 1
+bindsym $mod+y exec --no-startup-id wired --dnd on
+bindsym $mod+p exec --no-startup-id wired --dnd off
+
+
+
+bindsym $mod+Home exec --no-startup-id /home/ankush/.local/bin/volume up
+bindsym $mod+End exec --no-startup-id /home/ankush/.local/bin/volume down
+bindsym $mod+m exec --no-startup-id /home/ankush/.local/bin/volume mute
+
 
 #enable autotiling *****************************************************
- exec_always  --no-startup-id autotiling
+exec_always  --no-startup-id autotiling
 
 # Make the currently focused window a scratchpad ***********************
 bindsym $mod+Shift+minus move scratchpad
@@ -241,11 +256,11 @@ exec_always --no-startup-id pkill kwallet
 
 # setting catppuccin colors ********************************************
 # target                 title     bg          text      indicator  border
-client.focused           #b4befe   #1e1e2e    #cdd6f4   #f5e0dc    #b4befe
-client.focused_inactive  #6c7086   #1e1e2e    #cdd6f4   #f5e0dc    #6c7086
-client.unfocused         #6c7086   #1e1e2e    #cdd6f4   #f5e0dc    #6c7086
-client.urgent            #fab387   #1e1e2e    #fab387   #6c7086   #fab387
-client.placeholder       #6c7086   #1e1e2e    #cdd6f4   #6c7086   #6c7086
+client.focused           #b4befe   #1e1e2e    #cdd6f4   #f6e0dc    #74c7ec
+client.focused_inactive  #6c7086   #1e1e2e    #cdd6f4   #f6e0dc    #cba6f7
+client.unfocused         #6c7086   #1e1e2e    #cdd6f4   #f6e0dc    #cba6f7
+client.urgent            #fab387   #1e1e2e    #fab387   #6c7086    #f38ba8
+client.placeholder       #6c7086   #1e1e2e    #cdd6f4   #6c7086    #cba6f7
 client.background        #1e1e2e
 
 for_window [class=".*"] border pixel 1

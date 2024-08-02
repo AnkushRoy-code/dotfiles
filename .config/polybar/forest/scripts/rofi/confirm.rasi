@@ -1,9 +1,9 @@
 /* Confirm Dialog */
 
-@import "colors.rasi"
+@import "colors2.rasi"
 
 * {
-    background-color:       @bg;
+    background-color:       @al;
     text-color:             @fg;
 	font:				 	"Iosevka Nerd Font 10";
 }
@@ -11,7 +11,7 @@
 window {
     width:      			210px;
     padding:    			25px;
-    border:					0px 0px 1px 0px;
+    border:					  2px;
     border-radius:          0px;
     border-color:           @se;
     location:               center;

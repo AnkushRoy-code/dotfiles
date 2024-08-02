@@ -16,8 +16,8 @@ window {
     transparency:                   "real";
     background-color:               @bg;
     text-color:                     @fg;
-	border:							0px;
-	border-color:					@ac;
+	border:							2px;
+	border-color:					@se;
     border-radius:                  0px;
 	width:							550px;
     location:                       center;
@@ -29,14 +29,14 @@ prompt {
     enabled: 						true;
 	padding: 						10px 15px 10px 15px;
 	background-color: 				@bg1;
-	text-color: 					#FFFFFF;
+	text-color: 					#CDD6F4;
 	font:							"Iosevka Nerd Font 8";
 }
 
 entry {
     background-color:               @bg2;
-    text-color:                     #FFFFFF;
-    placeholder-color:              #FFFFFF;
+	  text-color: 				  	        #CDD6F4;
+    placeholder-color:              #CDD6F4;
     expand:                         true;
     horizontal-align:               0;
     placeholder:                    "Search...";
@@ -49,7 +49,7 @@ entry {
 inputbar {
 	children: 						[ prompt, entry ];
     background-color:               @bg3;
-    text-color:                     #FFFFFF;
+    text-color:                     #CDD6F4;
     expand:                         false;
 	border:							0px;
     border-radius:                  0px;

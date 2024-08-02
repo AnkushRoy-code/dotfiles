@@ -19,14 +19,14 @@ configuration {
 	sidebar-mode: 					false;
 }
 
-@import "colors.rasi"
+@import "colors2.rasi"
 
 window {
     transparency:                   "real";
     background-color:               @bg;
     text-color:                     @fg;
-	border:							0px 0px 0px 0px;
-	border-color:					@ac;
+	border:                           2px;
+	border-color:					@se;
     border-radius:                  0px;
 	width:							350px;
     location:                       center;
@@ -37,13 +37,13 @@ window {
 prompt {
     enabled: 						true;
 	padding: 						0px 0px 0px 10px;
-	background-color: 				@bga;
+	background-color: 				@bg1;
 	text-color: 					@fg;
 }
 
 textbox-prompt-colon {
 	padding: 						0px;
-	background-color: 				@bga;
+	background-color: 				@bg1;
 	text-color: 					@ac;
 	expand: false;
 	str: "";
@@ -63,10 +63,10 @@ entry {
 
 inputbar {
 	children: 						[ textbox-prompt-colon, prompt ];
-    background-color:               @bga;
+    background-color:               @bg1;
     text-color:                     @fg;
     expand:                         false;
-	border:							0px 0px 1px 0px;
+	border:							0px 0px 0px 0px;
     border-radius:                  0px;
 	border-color:					@se;
     margin:                         0px;
