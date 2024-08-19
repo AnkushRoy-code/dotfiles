@@ -126,6 +126,10 @@ return {
 					-- WARN: This is not Goto Definition, this is Goto Declaration.
 					--  For example, in C this would take you to the header.
 					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+
+					map("<leader>th", function()
+						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+					end, "[T]oggle Inlay [H]ints")
 				end,
 			})
 		end,

@@ -201,15 +201,19 @@ exec --no-startup-id picom -b
 
 # setiing up the wallpaper and polybar *********************************
 
-exec --no-startup-id feh --bg-fill /home/ankush/Pictures/wallpapers/arch-black-4k.png
-# exec --no-startup-id settimed lakeside
-exec --no-startup-id bash /home/ankush/.config/polybar/launch.sh --forest
+exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/arch-black-4k.png
+# exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/r.jpeg // some other wallpapers also included.
+# exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/w.jpeg
+
+# exec --no-startup-id settimed lakeside // this is an old timed wallpaper I used to use
+
+exec --no-startup-id bash ~/.config/polybar/launch.sh --forest
 exec --no-startup-id wired
 
 # Screenshot ***********************************************************
-bindsym Print exec --no-startup-id scrot "/home/ankush/Pictures/Screenshot/$(date +'%Y-%m-%d_%H-%M-%S').png"
-bindsym $mod+Print exec --no-startup-id scrot -u "/home/ankush/Pictures/Screenshot/$(date +'%Y-%m-%d_%H-%M-%S').png"
-bindsym Shift+Print exec --no-startup-id bash "/home/ankush/.config/i3/flameshot_toggle.sh"
+bindsym Print exec --no-startup-id scrot "~/Pictures/Screenshot/$(date +'%Y-%m-%d_%H-%M-%S').png"
+bindsym $mod+Print exec --no-startup-id scrot -u "~/Pictures/Screenshot/$(date +'%Y-%m-%d_%H-%M-%S').png"
+bindsym Shift+Print exec --no-startup-id bash "~/.config/i3/flameshot_toggle.sh"
 
 
 # rofi setup ***********************************************************
@@ -236,9 +240,9 @@ bindsym $mod+p exec --no-startup-id wired --dnd off
 
 
 
-bindsym $mod+Home exec --no-startup-id /home/ankush/.local/bin/volume up
-bindsym $mod+End exec --no-startup-id /home/ankush/.local/bin/volume down
-bindsym $mod+m exec --no-startup-id /home/ankush/.local/bin/volume mute
+bindsym $mod+Home exec --no-startup-id ~/.local/bin/volume up
+bindsym $mod+End exec --no-startup-id ~/.local/bin/volume down
+bindsym $mod+m exec --no-startup-id ~/.local/bin/volume mute
 
 
 #enable autotiling *****************************************************

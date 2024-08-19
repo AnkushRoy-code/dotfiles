@@ -1,11 +1,19 @@
+export LESS_TERMCAP_md=$'\e[01;31m'  # Bold text
+export LESS_TERMCAP_me=$'\e[0m'      # Reset bold
+export LESS_TERMCAP_se=$'\e[0m'      # End standout-mode
+export LESS_TERMCAP_so=$'\e[01;44;33m' # Standout-mode (reverse video)
+export LESS_TERMCAP_ue=$'\e[0m'      # End underline
+export LESS_TERMCAP_us=$'\e[01;32m'  # Start underline
+export GROFF_NO_SGR=1
 # Lines configured by zsh-newuser-install
+
 HISTFILE=~/.histfile
 HISTSIZE=5000
 SAVEHIST=5000
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/ankush/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 zstyle ':completion::complete:*' gain-privileges 1
 
 autoload -Uz compinit
@@ -100,3 +108,20 @@ add-zsh-hook -Uz chpwd (){ ls; }
 function gl() {
     git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' "$@"
 }
+
+# Different nvim configs:
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+
+function nvims() {
+  items=("default" "LazyVim")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config=""
+  fi
+  NVIM_APPNAME=$config nvim $@
+}
+
+bindkey -s ^a "nvims\n"

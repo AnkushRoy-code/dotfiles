@@ -13,8 +13,6 @@ vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss noi
 vim.keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "next buffer" })
 vim.keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", { desc = "next buffer" })
 
-vim.keymap.set("i", "gm", "<Esc>", {})
-
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
@@ -36,6 +34,7 @@ vim.keymap.set("n", "<C-e>", "<C-w>k", { desc = "switch window up" })
 vim.keymap.set("n", "<C-i>", "<C-w>l", { desc = "switch window right" })
 
 vim.keymap.set("n", "<C-f>", "<C-e>", { desc = "switch window right" })
+vim.keymap.set("n", "<leader>fe", "<cmd>Oil<cr>", { desc = "switch window right" })
 
 -- resize the panes of window
 vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
