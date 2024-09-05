@@ -97,7 +97,7 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+t layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -201,8 +201,8 @@ exec --no-startup-id picom -b
 
 # setiing up the wallpaper and polybar *********************************
 
-exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/arch-black-4k.png
-# exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/r.jpeg
+# exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/arch-black-4k.png
+exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/r.jpeg
 # exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/w.jpeg
 
 # exec --no-startup-id settimed lakeside // this is an old timed wallpaper I used to use
@@ -218,7 +218,8 @@ bindsym Shift+Print exec --no-startup-id bash "/home/ankush/.config/i3/flameshot
 
 # rofi setup ***********************************************************
 bindsym $mod+d exec --no-startup-id rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/forest/scripts/rofi/launcher.rasi
-bindsym $mod+u exec --no-startup-id rofi -show window -no-config -no-lazy-grab -show window -modi drun -theme ~/.config/rofi/config.rasi
+bindsym $mod+u exec --no-startup-id rofi -show window -no-config -no-lazy-grab -show window -modi drun -theme ~/.config/polybar/forest/scripts/rofi/launcher.rasi
+bindsym $mod+e exec --no-startup-id rofi -modi emoji -show emoji -theme ~/.config/polybar/forest/scripts/rofi/launcher.rasi
 bindsym $mod+Shift+d exec --no-startup-id bash ~/.config/polybar/forest/scripts/powermenu.sh
 
 # start Terminal ********************************************************

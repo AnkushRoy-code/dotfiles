@@ -3,6 +3,8 @@ configuration {
     show-icons:                     true;
 	icon-theme: 					"Papirus";
     display-drun: 					"";
+    display-window: "🪟";
+    display-emoji: "> ";
     drun-display-format:            "{name}";
     disable-history:                false;
     fullscreen:                     false;
