@@ -1,14 +1,7 @@
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- vim.keymap.set("n", "<up>", "<C-a>", { desc = "Increment" })
 -- vim.keymap.set("n", "<down>", "<C-x>", { desc = "Decrement" })
-
-vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss noice messages" })
 
 vim.keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "next buffer" })
 vim.keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", { desc = "next buffer" })
@@ -32,9 +25,6 @@ vim.keymap.set("n", "<leader>m", "<C-w>h", { desc = "switch window left" })
 vim.keymap.set("n", "<C-n>", "<C-w>j", { desc = "switch window down" })
 vim.keymap.set("n", "<C-e>", "<C-w>k", { desc = "switch window up" })
 vim.keymap.set("n", "<C-i>", "<C-w>l", { desc = "switch window right" })
-
-vim.keymap.set("n", "<C-f>", "<C-e>", { desc = "switch window right" })
-vim.keymap.set("n", "<leader>fe", "<cmd>Oil<cr>", { desc = "switch window right" })
 
 -- resize the panes of window
 vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })

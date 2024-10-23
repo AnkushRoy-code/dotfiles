@@ -62,28 +62,29 @@ bindsym $mod+Shift+q kill
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-# bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-# bindsym $mod+l focus right
+set $movemouse "sh -c 'eval `xdotool getactivewindow getwindowgeometry --shell`; xdotool mousemove $((X+WIDTH/2)) $((Y+HEIGHT/2))'"
+# bindsym $mod+h focus left; exec --no-startup-id $movemouse
+bindsym $mod+j focus down; exec --no-startup-id $movemouse
+bindsym $mod+k focus up; exec --no-startup-id $movemouse
+# bindsym $mod+l focus right; exec --no-startup-id $movemouse
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+Left focus left; exec --no-startup-id $movemouse
+bindsym $mod+Right focus right; exec --no-startup-id $movemouse
+bindsym $mod+Down focus down; exec --no-startup-id $movemouse
+bindsym $mod+Up focus up; exec --no-startup-id $movemouse
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left; exec --no-startup-id $movemouse
+bindsym $mod+Shift+j move down; exec --no-startup-id $movemouse
+bindsym $mod+Shift+k move up; exec --no-startup-id $movemouse
+bindsym $mod+Shift+l move right; exec --no-startup-id $movemouse
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Left move left; exec --no-startup-id $movemouse
+bindsym $mod+Shift+Down move down; exec --no-startup-id $movemouse
+bindsym $mod+Shift+Up move up; exec --no-startup-id $movemouse
+bindsym $mod+Shift+Right move right; exec --no-startup-id $movemouse
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -210,6 +211,9 @@ exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/r.jpeg
 exec --no-startup-id bash ~/.config/polybar/launch.sh --forest
 exec --no-startup-id wired
 
+# for hiding the cursor after x amount of inactive seconds here, x = 2
+exec --no-startup-id unclutter --timeout 2
+
 # Screenshot ***********************************************************
 bindsym Print exec --no-startup-id scrot "/home/ankush/Pictures/Screenshot/$(date +'%Y-%m-%d_%H-%M-%S').png"
 bindsym $mod+Print exec --no-startup-id scrot -u "/home/ankush/Pictures/Screenshot/$(date +'%Y-%m-%d_%H-%M-%S').png"
@@ -233,7 +237,7 @@ bindsym $mod+Prior exec --no-startup-id bash ~/.local/bin/backlight up
 bindsym $mod+Next exec --no-startup-id bash ~/.local/bin/backlight down
 
 bindsym XF86MonBrightnessDown exec --no-startup-id bash ~/.local/bin/backlight down
-bindsym XF86MonBrightnessUp exec --no-startup-id bash ~/.local/bin/backlight down
+bindsym XF86MonBrightnessUp exec --no-startup-id bash ~/.local/bin/backlight up
 
 # notification controls
 bindsym $mod+n exec --no-startup-id wired --drop all

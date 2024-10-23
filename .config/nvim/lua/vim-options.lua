@@ -16,7 +16,9 @@ vim.opt.mouse = "a"
 
 vim.opt.showmode = false
 
-vim.opt.clipboard = "unnamedplus"
+vim.schedule(function()
+	vim.opt.clipboard = "unnamedplus"
+end)
 
 vim.opt.breakindent = true
 
@@ -42,7 +44,8 @@ vim.opt.cursorline = true
 
 vim.opt.scrolloff = 10
 
-vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 vim.cmd([[highlight WinSeparator guifg=#65ADDC]])
+
+vim.o.pumheight = 15 -- The number of items in the completion window/all popups

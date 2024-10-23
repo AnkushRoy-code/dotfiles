@@ -1,31 +1,33 @@
 return {
 	{
-		"williamboman/mason.nvim",
-		lazy = false,
-		config = function()
-			require("mason").setup()
-		end,
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"clangd",
-					"rust_analyzer",
-					"lua_ls",
-				},
-			})
-		end,
-	},
-	{
+		-- Has predefined configurations for LSPs?
 		"neovim/nvim-lspconfig",
+		event = { "BufReadPost", "BufNewFile" },
+
+		dependencies = {
+			-- Automatically install LSPs and related tools to stdpath for Neovim
+			{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
+			{
+				"williamboman/mason-lspconfig.nvim",
+				config = function()
+					require("mason-lspconfig").setup({
+						ensure_installed = {
+							"clangd",
+							"rust_analyzer",
+							-- "lua_ls",
+						},
+					})
+				end,
+			},
+		},
+
 		config = function()
 			local lspconfig = require("lspconfig")
 
 			vim.cmd([[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]])
 			vim.cmd([[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]])
 
+			-- Beautiful borders around LSP stuff like hover/signature_help
 			local border = {
 				{ "┌", "FloatBorder" },
 
@@ -50,13 +52,31 @@ return {
 				["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
 			}
 
-			-- Do not forget to use the on_attach function
 			lspconfig.clangd.setup({
 				cmd = {
 					"clangd",
 					"--offset-encoding=utf-16",
 				},
 				handlers = handlers,
+			})
+
+			lspconfig.glsl_analyzer.setup({
+				filetypes = { "glsl", "vert", "tese", "frag", "geom", "comp", "vs", "fs" },
+				handlers = handlers,
+			})
+
+			-- adding filetypes to get glsl things
+			vim.filetype.add({
+				extension = {
+					vert = "glsl",
+					tesc = "glsl",
+					tese = "glsl",
+					frag = "glsl",
+					geom = "glsl",
+					comp = "glsl",
+					vs = "glsl",
+					fs = "glsl",
+				},
 			})
 
 			lspconfig.rust_analyzer.setup({
@@ -70,8 +90,7 @@ return {
 				handlers = handlers,
 			})
 
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show Function Definition" })
-
+			-- These lsp keybinds only load when an LSP is attatched to the buffer.
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(event)
@@ -110,6 +129,13 @@ return {
 						require("telescope.builtin").lsp_dynamic_workspace_symbols,
 						"[W]orkspace [S]ymbols"
 					)
+					map("[d", vim.diagnostic.goto_prev, "Go to previous [D]iagnostic message")
+
+					map("]d", vim.diagnostic.goto_next, "Go to next [D]iagnostic message")
+
+					map("<leader>e", vim.diagnostic.open_float, "Show diagnostic [E]rror messages")
+
+					map("<leader>q", vim.diagnostic.setloclist, "Open diagnostic [Q]uickfix list")
 
 					-- Rename the variable under your cursor.
 					--  Most Language Servers support renaming across files, etc.
@@ -121,7 +147,6 @@ return {
 
 					-- Opens a popup that displays documentation about the word under your cursor
 					--  See `:help K` for why this keymap.
-					map("K", vim.lsp.buf.hover, "Hover Documentation")
 
 					-- WARN: This is not Goto Definition, this is Goto Declaration.
 					--  For example, in C this would take you to the header.

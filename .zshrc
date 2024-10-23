@@ -38,6 +38,7 @@ alias zz='z -'
 alias tmux='tmux -u'
 alias gs='git status'
 alias gd='git diff'
+alias lg='lazygit'
 alias make='make && notify-send "Command Completed" "The programme is completed building "'
 alias sound='canberra-gtk-play -i audio-volume-change'
 
@@ -91,15 +92,6 @@ _fzf_comprun() {
   esac
 }
 
-function yy() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		cd "$cwd"
-	fi
-	rm -f -- "$tmp"
-}
-
 export EDITOR=nvim
 
 autoload -U add-zsh-hook
@@ -110,10 +102,10 @@ function gl() {
 }
 
 # Different nvim configs:
-alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim NvChad"
 
 function nvims() {
-  items=("default" "LazyVim")
+  items=("default" "LazyVim" "NvChad")
   config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
   if [[ -z $config ]]; then
     echo "Nothing selected"
