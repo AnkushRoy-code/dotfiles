@@ -3,8 +3,6 @@
 version = 2
 final_space = true
 console_title_template = '{{ .Shell }} in {{ .Folder }}'
-auto_upgrade = true
-
 
 [[blocks]]
   type = 'prompt'
@@ -73,13 +71,3 @@ auto_upgrade = true
 
 [properties]
 always_enabled = true
-
-[transient_prompt]
-  foreground = 'magenta'
-  background = 'transparent'
-  template = '❯ '
-
-[secondary_prompt]
-  foreground = 'magenta'
-  background = 'transparent'
-  template = '❯❯ '
