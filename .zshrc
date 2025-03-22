@@ -16,6 +16,8 @@ bindkey -v
 zstyle :compinstall filename '~/.zshrc'
 zstyle ':completion::complete:*' gain-privileges 1
 
+setopt HIST_IGNORE_DUPS
+
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
@@ -26,6 +28,8 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source ~/fzf-git.sh/fzf-git.sh
 
+alias gb="git -c diff.external=difft diff"
+alias view="nsxiv"
 alias ls="eza --color=always --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 alias ll='eza -alF --icons=always'
 alias la='eza -a --icons=always'
@@ -39,7 +43,7 @@ alias tmux='tmux -u'
 alias gs='git status'
 alias gd='git diff'
 alias lg='lazygit'
-alias make='make && notify-send "Command Completed" "The programme is completed building "'
+alias makee='make && notify-send "Command Completed" "The programme is completed building "'
 alias sound='canberra-gtk-play -i audio-volume-change'
 
 eval "$(zoxide init zsh)"
@@ -93,6 +97,7 @@ _fzf_comprun() {
 }
 
 export EDITOR=nvim
+export CPM_SOURCE_CACHE=$HOME/.cache/CPM
 
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls; }
@@ -101,11 +106,20 @@ function gl() {
     git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' "$@"
 }
 
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
 # Different nvim configs:
-alias nvim-lazy="NVIM_APPNAME=LazyVim nvim NvChad"
+alias nvim-lazy="NVIM_APPNAME=nvim NvChad"
 
 function nvims() {
-  items=("default" "LazyVim" "NvChad")
+  items=("default" "NvChad")
   config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
   if [[ -z $config ]]; then
     echo "Nothing selected"
@@ -115,5 +129,5 @@ function nvims() {
   fi
   NVIM_APPNAME=$config nvim $@
 }
-
 bindkey -s ^a "nvims\n"
+. "$HOME/.cargo/env"
