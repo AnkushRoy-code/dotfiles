@@ -50,6 +50,8 @@ tiling_drag modifier titlebar
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+# Open a tmux session inside the terminal or attatch to a session if it exist
+bindsym $mod+t exec st -e tmux new-session -A -s default
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -63,10 +65,10 @@ bindsym $mod+Shift+q kill
 
 # change focus
 set $movemouse "sh -c 'eval `xdotool getactivewindow getwindowgeometry --shell`; xdotool mousemove $((X+WIDTH/2)) $((Y+HEIGHT/2))'"
-# bindsym $mod+h focus left; exec --no-startup-id $movemouse
-bindsym $mod+j focus down; exec --no-startup-id $movemouse
-bindsym $mod+k focus up; exec --no-startup-id $movemouse
-# bindsym $mod+l focus right; exec --no-startup-id $movemouse
+# bindsym $mod+m focus left; exec --no-startup-id $movemouse
+# bindsym $mod+n focus down; exec --no-startup-id $movemouse
+# bindsym $mod+e focus up; exec --no-startup-id $movemouse
+# bindsym $mod+i focus right; exec --no-startup-id $movemouse
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left; exec --no-startup-id $movemouse
@@ -98,7 +100,7 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+t layout toggle split
+# bindsym $mod+t layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -203,13 +205,14 @@ exec --no-startup-id picom -b
 # setiing up the wallpaper and polybar *********************************
 
 # exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/arch-black-4k.png
-exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/r.jpeg
+# exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/r.jpeg
 # exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/w.jpeg
-
-# exec --no-startup-id settimed lakeside // this is an old timed wallpaper I used to use
+# // this is an old timed wallpaper I used to use
+# exec --no-startup-id settimed moon 
+exec --no-startup-id bash /home/ankush/.config/i3/setRandWallpaper.sh
 
 exec --no-startup-id bash ~/.config/polybar/launch.sh --forest
-exec --no-startup-id wired
+exec --no-startup-id dunst
 
 # for hiding the cursor after x amount of inactive seconds here, x = 2
 exec --no-startup-id unclutter --timeout 2
@@ -236,19 +239,30 @@ bindsym $mod+Shift+i exec --no-startup-id i3lock
 bindsym $mod+Prior exec --no-startup-id bash ~/.local/bin/backlight up
 bindsym $mod+Next exec --no-startup-id bash ~/.local/bin/backlight down
 
+exec --no-startup-id redshift -l 23.829321:91.277847
+exec --no-startup-id solaar --window=hide
+
+bindsym $mod+c exec --no-startup-id pkill -USR1 redshift 
+
+bindsym $mod+P exec --no-startup-id passmenu
+
 bindsym XF86MonBrightnessDown exec --no-startup-id bash ~/.local/bin/backlight down
 bindsym XF86MonBrightnessUp exec --no-startup-id bash ~/.local/bin/backlight up
 
 # notification controls
-bindsym $mod+n exec --no-startup-id wired --drop all
-bindsym $mod+i exec --no-startup-id wired --drop latest
-bindsym $mod+l exec --no-startup-id wired --show 1
-bindsym $mod+y exec --no-startup-id wired --dnd on
-bindsym $mod+p exec --no-startup-id wired --dnd off
+bindsym $mod+n exec --no-startup-id dunstctl close-all
+bindsym $mod+l exec --no-startup-id dunstctl history-pop
+bindsym $mod+y exec --no-startup-id dunstctl set-paused toggle
 
 bindsym XF86AudioRaiseVolume exec  --no-startup-id ~/.local/bin/volume up
 bindsym XF86AudioLowerVolume exec --no-startup-id ~/.local/bin/volume down
 bindsym XF86AudioMute exec --no-startup-id ~/.local/bin/volume mute
+
+bindsym  XF86Calculator exec --no-startup-id galculator --class floating
+bindsym  XF86HomePage exec --no-startup-id chromium
+bindsym  XF86Mail exec --no-startup-id dunstify -t 5000 -i email "Tried to start Email" "No email clients present in the system"
+bindsym  XF86Tools exec --no-startup-id audacious
+
 
 bindsym $mod+Home exec --no-startup-id ~/.local/bin/volume up
 bindsym $mod+End exec --no-startup-id ~/.local/bin/volume down
@@ -278,3 +292,4 @@ client.placeholder       #6c7086   #1e1e2e    #cdd6f4   #6c7086    #cba6f7
 client.background        #1e1e2e
 
 for_window [class=".*"] border pixel 1
+for_window [class="floating"] floating enabled
