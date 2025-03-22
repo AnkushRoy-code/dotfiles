@@ -92,6 +92,7 @@ return {
 					file_ignore_patterns = {
 						"build/.*", -- Ignore the dirs
 						".cache/.*",
+						"debug/.*",
 						"vendor/.*",
 						"subprojects/.*",
 						"thirdparty/.*",
