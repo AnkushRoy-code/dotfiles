@@ -24,5 +24,11 @@ return {
                 require("menu").open(options, { mouse = true })
             end, {})
         end,
+        dependencies = {
+            {
+                "nvzone/minty",
+                cmd = { "Shades", "Huefy" },
+            },
+        },
     },
 }

@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/ankush/Projects/RayTracing/SomeBeautifulErrors'
+let g:netrw_dirhist_6='/home/ankush/Projects/RayTracing'
+let g:netrw_dirhist_5='/home/ankush/Projects/RayTracing/build'
+let g:netrw_dirhist_4='/tmp/git-difftool.sodfK2/left'
+let g:netrw_dirhist_3='/tmp/git-difftool.sodfK2/right'
+let g:netrw_dirhist_2='/tmp/git-difftool.sodfK2/left'
+let g:netrw_dirhist_1='/home/ankush/Projects/Particle/res'
+let g:netrw_dirhist_0='/home/ankush/Projects/Particle'
+let g:netrw_dirhist_9='/home/ankush/Projects/Particle/libs'
+let g:netrw_dirhist_8='/home/ankush/Projects/Particle/libs/imgui'

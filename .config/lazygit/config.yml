@@ -1,0 +1,65 @@
+gui:
+  sidePanelWidth: 0.15
+  # If true, increase the height of the focused side window; creating an accordion effect.
+  # expandFocusedSidePanel: false
+
+  # The weight of the expanded side panel, relative to the other panels. 2 means
+  # twice as tall as the other panels. Only relevant if `expandFocusedSidePanel` is true.
+  # expandedSidePanelWeight: 2
+  
+  mainPanelSplitMode: horizontal
+
+  theme:
+     activeBorderColor:
+        - '#74c7ec'
+        - bold
+     inactiveBorderColor:
+        - '#a6adc8'
+     optionsTextColor:
+        - '#89b4fa'
+     selectedLineBgColor:
+        - '#313244'
+     cherryPickedCommitBgColor:
+        - '#45475a'
+     cherryPickedCommitFgColor:
+        - '#74c7ec'
+     unstagedChangesColor:
+        - '#f38ba8'
+     defaultFgColor:
+        - '#cdd6f4'
+     searchingActiveBorderColor:
+        - '#f9e2af'
+
+  # If true, show the '5 of 20' footer at the bottom of list views
+  showListFooter: false
+
+  # If true, show the command log -- I might change it later. (Default -> true)
+  showCommandLog: false
+
+  # If true, show the bottom line that contains keybinding info and useful buttons. If false, this line will be hidden except to display a loader for an in-progress action. -- I might change it later. (Default -> true)
+  showBottomLine: true
+
+  # If true, show jump-to-window keybindings in window titles.
+  showPanelJumps: false
+
+  # Nerd fonts version to use.
+  # One of: '2' | '3' | empty string (default)
+  # If empty, do not show icons.
+  nerdFontsVersion: "3"
+  
+  # Length of commit hash in commits view. 0 shows '*' if NF icons aren't on.
+  commitHashLength: 0
+
+# Config relating to git
+git:
+  # See https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Pagers.md
+  parseEmoji: true
+
+
+# Config relating to things outside of Lazygit like how files are opened, copying to clipboard, etc
+os:
+  editPreset: "nvim"
+  
+
+# If true, display a confirmation when subprocess terminates. This allows you to view the output of the subprocess before returning to Lazygit.
+promptToReturnFromSubprocess: false

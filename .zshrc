@@ -28,6 +28,8 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source ~/fzf-git.sh/fzf-git.sh
 
+alias kbd="sudo systemctl restart kmonad.service"
+alias crossCompile="/home/ankush/Downloads/SDL3_shadercross-linux-x64/SDL3_shadercross-3.0.0-linux-x64/bin/shadercross"
 alias gb="git -c diff.external=difft diff"
 alias view="nsxiv"
 alias ls="eza --color=always --git --no-filesize --icons=always --no-time --no-user --no-permissions"

@@ -71,5 +71,3 @@ vim.filetype.add({
         fs = "glsl",
     },
 })
-
-vim.cmd("set nowrap")
