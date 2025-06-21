@@ -1,58 +1,61 @@
-#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
-
-version = 2
-final_space = true
 console_title_template = '{{ .Shell }} in {{ .Folder }}'
+version = 3
+final_space = true
 
 [[blocks]]
   type = 'prompt'
   alignment = 'left'
   newline = true
-  
-  [[blocks.segments]]
-    type = "os"
-    style = "plain"
-    foreground = "#26C6DA"
-    background = "transparent"
-    template = "{{ if .WSL }}WSL at {{ end }}{{.Icon}}  "
 
   [[blocks.segments]]
+    template = '{{ if .WSL }}WSL at {{ end }}{{.Icon}}  '
+    foreground = '#26C6DA'
+    background = 'transparent'
+    type = 'os'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '{{ .Path }}'
+    foreground = 'blue'
+    background = 'transparent'
     type = 'path'
     style = 'plain'
-    background = 'transparent'
-    foreground = 'blue'
-    template = '{{ .Path }}'
-    
+
     [blocks.segments.properties]
+      cache_duration = 'none'
+      max_depth = 2
       style = 'agnoster_short'
-      max_depth = 2  
 
   [[blocks.segments]]
-    type = 'git'
-    style = 'plain'
+    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
     foreground = 'magenta'
     background = 'transparent'
-    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
+    type = 'git'
+    style = 'plain'
 
     [blocks.segments.properties]
+      cache_duration = 'none'
       commit_icon = '@'
       fetch_status = true
       tag_icon = ' '
 
- [[blocks]]
-    type = 'rprompt'
-    overflow = 'hidden'
+[[blocks]]
+  type = 'rprompt'
+  overflow = 'hidden'
 
   [[blocks.segments]]
-    type = 'executiontime'
-    style = 'plain'
+    template = '{{ .FormattedMs }}'
     foreground = 'yellow'
     background = 'transparent'
-    template = '{{ .FormattedMs }}'
+    type = 'executiontime'
+    style = 'plain'
 
     [blocks.segments.properties]
+      cache_duration = 'none'
       threshold = 500
-
 
 [[blocks]]
   type = 'prompt'
@@ -60,14 +63,11 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   newline = true
 
   [[blocks.segments]]
+    template = '❯'
+    background = 'transparent'
     type = 'text'
     style = 'plain'
-    foreground_templates = [
-      "{{if gt .Code 0}}red{{end}}",
-      "{{if eq .Code 0}}magenta{{end}}",
-    ]
-    background = 'transparent'
-    template = '❯'
+    foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}magenta{{end}}']
 
-[properties]
-always_enabled = true
+    [blocks.segments.properties]
+      cache_duration = 'none'

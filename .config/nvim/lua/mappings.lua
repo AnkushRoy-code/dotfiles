@@ -3,6 +3,8 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 -- vim.keymap.set("n", "<up>", "<C-a>", { desc = "Increment" })
 -- vim.keymap.set("n", "<down>", "<C-x>", { desc = "Decrement" })
 
+-- vim.keymap.set("n", "<leader>gf", "msgg=G's", {desc = "Format the whole file"})
+
 vim.keymap.set("n", "zR", require("ufo").openAllFolds)
 vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 
@@ -26,8 +28,8 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	desc = "Remove all linenumbers from Term",
 	group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
 	callback = function()
-		vim.opt.number = false
-		vim.opt.relativenumber = false
+		vim.o.number = false
+		vim.o.relativenumber = false
 	end,
 })
 
